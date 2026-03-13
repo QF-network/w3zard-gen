@@ -7,7 +7,8 @@ User-friendly error messages for Assets pallet.
 ```typescript
 // lib/assetErrorMessages.ts
 export const ASSET_ERROR_MESSAGES: Record<string, string> = {
-  NoPermission: "You don't have permission. Only the asset owner/admin can do this.",
+  NoPermission:
+    "You don't have permission. Only the asset owner/admin can do this.",
   NotOwner: 'This operation requires asset ownership.',
   Unknown: 'This asset does not exist.',
   InUse: 'Asset is in use and cannot be destroyed.',
@@ -37,9 +38,10 @@ import { getAssetErrorMessage } from './assetErrorMessages'
 export const createAssetToasts: ToastConfig<CreateAssetParams> = {
   error: (params, error) => {
     const errorType = parsePalletError(error)
-    const message = errorType ? getAssetErrorMessage(errorType) : 'Failed to create asset.'
+    const message = errorType
+      ? getAssetErrorMessage(errorType)
+      : 'Failed to create asset.'
     return { title: 'Creation Failed', description: message }
   },
 }
 ```
-

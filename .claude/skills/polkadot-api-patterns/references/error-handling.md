@@ -15,7 +15,7 @@ observable.subscribe({
   error: (err: unknown) => {
     if (typeof err === 'object' && err && 'type' in err) {
       const txError = err as { type: string; value?: unknown }
-      
+
       switch (txError.type) {
         case 'Invalid':
           console.error('Transaction is invalid')
@@ -27,7 +27,7 @@ observable.subscribe({
           console.error('Unknown error:', txError)
       }
     }
-  }
+  },
 })
 ```
 
@@ -42,17 +42,19 @@ observable.subscribe({
       const errorEvent = event.block.events.find(
         (e) => e.type === 'System' && e.value.type === 'ExtrinsicFailed'
       )
-      
+
       if (errorEvent && errorEvent.value.type === 'ExtrinsicFailed') {
         const dispatchError = errorEvent.value.value.dispatchError
-        
+
         if (dispatchError.type === 'Module') {
           const { value: moduleError } = dispatchError
-          console.error(`Pallet: ${moduleError.type}, Error: ${moduleError.value.type}`)
+          console.error(
+            `Pallet: ${moduleError.type}, Error: ${moduleError.value.type}`
+          )
         }
       }
     }
-  }
+  },
 })
 ```
 
@@ -109,4 +111,3 @@ export function getAssetErrorMessage(errorType: string): string {
 3. Log unknown errors for debugging
 4. Provide remediation guidance
 5. Use type narrowing before accessing properties
-

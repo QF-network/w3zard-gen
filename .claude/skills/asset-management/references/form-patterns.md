@@ -8,6 +8,9 @@ All forms use this three-column grid with shared components from template:
 
 ```typescript
 import {
+  useState,
+} from 'react'
+import {
   AccountDashboard,
   TransactionFormFooter,
   TransactionReview,
@@ -85,4 +88,3 @@ For destroy operations, use `variant="destructive"`:
   data={formData}
 />
 ```
-

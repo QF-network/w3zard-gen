@@ -7,20 +7,20 @@ How to use template infrastructure in asset management features.
 Template provides battle-tested utilities - NEVER create custom versions.
 
 ```typescript
-import { toPlanck, fromPlanck, formatBalance } from '@/lib'
+import { formatBalance, fromPlanck, toPlanck } from '@/lib'
 
-// User input → Planck (bigint for transactions)
-const amount = toPlanck("1.5", 18)  // 1500000000000000000n
+// User input â Planck (bigint for transactions)
+const amount = toPlanck('1.5', 18) // 1500000000000000000n
 
-// Planck → Readable string
-const readable = fromPlanck(1500000000000000000n, 18)  // "1.5"
+// Planck â Readable string
+const readable = fromPlanck(1500000000000000000n, 18) // "1.5"
 
 // Format with locale and symbol
-const formatted = formatBalance("1234.5678", {
-  symbol: "QF",
+const formatted = formatBalance('1234.5678', {
+  symbol: 'QF',
   displayDecimals: 2,
-  locale: "en-US"
-})  // "1,234.57 QF"
+  locale: 'en-US',
+}) // "1,234.57 QF"
 ```
 
 ## Shared Components
@@ -72,7 +72,7 @@ const { mutation, transaction } = useAssetMutation({
   isValid: (params) => params.name !== '',
   onSuccess: async () => {
     await invalidateAssetQueries(queryClient)
-  }
+  },
 })
 ```
 
@@ -105,4 +105,3 @@ const queryClient = useQueryClient()
 await invalidateAssetQueries(queryClient)
 invalidateBalanceQueries(queryClient, assetId, [address1, address2])
 ```
-

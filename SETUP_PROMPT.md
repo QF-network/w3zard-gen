@@ -1,28 +1,47 @@
-# My QFN Asset Manager - Setup
+# W3zard Project Setup
 
-Generate a Polkadot dApp with the following features.
+## Your Configuration
 
-**Project:** My QFN Asset Manager
-**Description:** Asset management dApp on QF Network testnet
-**Chain:** QF Network testnet (wss://test.qfnetwork.xyz)
+| Setting | Value |
+|---------|-------|
+| Project Name | my-project |
+| Project Type | user-facing-app |
+| Version | 0.1.0 |
 
-## Feature: Asset Management
+**Description:** Generated with W3zard
 
-Implement complete asset management functionality including:
-- Create custom tokens with metadata
-- Mint tokens to recipients
-- Transfer tokens between accounts
-- Destroy tokens safely
-- View all tokens and balances in portfolio
 
-The asset-management skill will handle this implementation following all CLAUDE.md conventions.
+## Selected Features
 
-## Validation
+- assets
 
-After all features are generated:
-1. Run required validation:
-   - bash .claude/scripts/validate-typescript.sh (pnpm typecheck)
-2. Verify all imports use polkadot-api (NEVER @polkadot/api)
-3. Report completion with file counts
+## Environments
 
-Follow CLAUDE.md conventions.
+- **staging**: staging (qfn-testnet)
+
+## Getting Started
+
+Run `/setup` in Claude Code to configure your project based on these selections.
+
+## Configuration JSON
+
+```json
+{
+  "version": "1.0.0",
+  "projectType": "user-facing-app",
+  "features": [
+    "assets"
+  ],
+  "environments": {
+    "staging": {
+      "type": "staging",
+      "chain": "qfn-testnet",
+      "endpoint": "wss://test.qfnetwork.xyz"
+    }
+  },
+  "projectMetadata": {
+    "name": "my-project",
+    "description": "Generated with W3zard"
+  }
+}
+```

@@ -14,8 +14,9 @@ polkadot-api patterns for asset pallet operations.
 
 ```typescript
 import { Binary, type TxCallData, type TypedApi } from 'polkadot-api'
-import { MultiAddress, type qfn } from '@polkadot-api/descriptors'
+
 import { toPlanck } from '@/lib'
+import { MultiAddress, type qfn } from '@polkadot-api/descriptors'
 
 type QfnApi = TypedApi<typeof qfn>
 
@@ -53,7 +54,10 @@ export const createAssetBatch = (
   const calls: TxCallData[] = [createCall, metadataCall]
 
   if (params.initialMintAmount && parseFloat(params.initialMintAmount) > 0) {
-    const mintAmount = toPlanck(params.initialMintAmount, parseInt(params.decimals))
+    const mintAmount = toPlanck(
+      params.initialMintAmount,
+      parseInt(params.decimals)
+    )
     const mintCall = api.tx.Assets.mint({
       id: assetId,
       beneficiary: MultiAddress.Id(params.initialMintBeneficiary),
@@ -125,4 +129,3 @@ export const destroyAssetBatch = (api: QfnApi, params: DestroyAssetParams) => {
   return api.tx.Utility.batch_all({ calls })
 }
 ```
-
